@@ -8,10 +8,10 @@ from tkinter import filedialog
 def login():
     if(a.get()):
         q=a.get()
-        print(q)
-        #options = Options()
-        #options.add_argument('--headless')
-        driver = webdriver.Chrome(r'C:\Users\Shivani Agarwal\Downloads\chromedriver_win32\chromedriver.exe')#,options=options)
+        #print(q)
+        options = Options()
+        options.add_argument('--headless')
+        driver = webdriver.Chrome(r'C:\Users\Shivani Agarwal\Downloads\chromedriver_win32\chromedriver.exe',options=options)
         driver.get("https://instagram.com/"+q)
 
         images= driver.find_elements_by_tag_name('img')
@@ -19,13 +19,13 @@ def login():
         i=0
         for img in images:
             source = img.get_attribute("src")
-            print(source)
+            #print(source)
             filename = 'image-{}.jpg'.format(i)
             full_path = '{}{}'.format(file_path, filename)
             i = i + 1
             urllib.request.urlretrieve(source,full_path)
         driver.close()
-        print('Save')
+        #print('Save')
         file()
     else:
         q=b.get()
